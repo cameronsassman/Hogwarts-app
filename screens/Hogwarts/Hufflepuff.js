@@ -9,7 +9,7 @@ function Hufflepuff() {
   useEffect(() => {
     if(data == null) {
       setLoading(true)
-      fetch('https://hp-api.herokuapp.com/api/characters/house/hufflepuff')
+      fetch('https://hp-api.onrender.com/api/characters/house/hufflepuff')
           .then(respuesta => respuesta.json())
           .then(e => setData(e));
     }

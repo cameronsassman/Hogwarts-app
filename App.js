@@ -16,7 +16,6 @@ import LoginScreen from './screens/Authentication/LoginScreen';
 import Gryffindor from './screens/Hogwarts/Gryffindor';
 import Houses from './screens/Hogwarts/Houses';
 import SignupScreen from './screens/Authentication/SignupScreen';
-import Creatures from './screens/Hogwarts/Creatures';
 import Hufflepuff from './screens/Hogwarts/Hufflepuff';
 import Ravenclaw from './screens/Hogwarts/Ravenclaw'
 import Slytherin from './screens/Hogwarts/Slytherin'
@@ -137,25 +136,6 @@ function AuthenticatedStack() {
           headerStyle: { backgroundColor: colors.houses },
           drawerIcon: () => (
             <IconButton icon={require('./assets/Hogwarts/Icons/houses.png')} />
-          ),
-          headerRight: ({ tintColor }) => (
-            <Ionicons
-              name="exit"
-              color={tintColor}
-              size={24}
-              style={{paddingRight: 15}}
-              onPress={authCtx.logout}
-            />
-          ),
-        }}
-      />
-      <Drawer.Screen 
-        name='Creatures' 
-        component={Creatures} 
-        options={{
-          headerStyle: { backgroundColor: colors.creatures },
-          drawerIcon: () => (
-            <IconButton icon={require('./assets/Hogwarts/Icons/creature.png')} />
           ),
           headerRight: ({ tintColor }) => (
             <Ionicons

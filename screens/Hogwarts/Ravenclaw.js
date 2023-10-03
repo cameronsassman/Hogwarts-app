@@ -9,7 +9,7 @@ function Ravenclaw() {
   useEffect(() => {
     if(data == null) {
       setLoading(true)
-      fetch('https://hp-api.herokuapp.com/api/characters/house/ravenclaw')
+      fetch('https://hp-api.onrender.com/api/characters/house/ravenclaw')
           .then(respuesta => respuesta.json())
           .then(e => setData(e));
     }

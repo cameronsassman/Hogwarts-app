@@ -9,7 +9,7 @@ function Gryffindor() {
   useEffect(() => {
     if(data == null) {
       setLoading(true)
-      fetch('http://hp-api.herokuapp.com/api/characters/house/gryffindor')
+      fetch('https://hp-api.onrender.com/api/characters/house/gryffindor')
           .then(respuesta => respuesta.json())
           .then(e => setData(e));
     }

@@ -9,7 +9,7 @@ function Slytherin() {
   useEffect(() => {
     if(data == null) {
       setLoading(true)
-      fetch('https://hp-api.herokuapp.com/api/characters/house/slytherin')
+      fetch('https://hp-api.onrender.com/api/characters/house/slytherin')
           .then(respuesta => respuesta.json())
           .then(e => setData(e));
     }

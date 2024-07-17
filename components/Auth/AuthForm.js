@@ -4,6 +4,8 @@ import { StyleSheet, View } from 'react-native';
 import Button from '../UI/Button';
 import Input from './Input';
 
+// Login: email= test@test.com password= testing
+
 function AuthForm({ isLogin, onSubmit, credentialsInvalid }) {
   const [enteredEmail, setEnteredEmail] = useState('');
   const [enteredConfirmEmail, setEnteredConfirmEmail] = useState('');

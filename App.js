@@ -5,7 +5,7 @@ import { StatusBar } from 'expo-status-bar';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import AppLoading from 'expo-app-loading';
 import { createDrawerNavigator } from '@react-navigation/drawer';
-import { FontAwesome5, Ionicons } from '@expo/vector-icons';
+import { Ionicons } from '@expo/vector-icons';
 
 import { colors } from './constants/styles';
 import SortingHat from './screens/SortingHat/SortingHat';

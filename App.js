@@ -14,7 +14,7 @@ import IconButton from './components/UI/IconButton';
 
 import LoginScreen from './screens/Authentication/LoginScreen';
 import Gryffindor from './screens/Hogwarts/Gryffindor';
-import Houses from './screens/Hogwarts/Houses';
+// import Houses from './screens/Hogwarts/Houses';
 import SignupScreen from './screens/Authentication/SignupScreen';
 import Hufflepuff from './screens/Hogwarts/Hufflepuff';
 import Ravenclaw from './screens/Hogwarts/Ravenclaw'
@@ -129,7 +129,7 @@ function AuthenticatedStack() {
           ),
         }}
       />
-      <Drawer.Screen 
+      {/* <Drawer.Screen 
         name='Hogwarts Houses' 
         component={Houses} 
         options={{
@@ -147,7 +147,7 @@ function AuthenticatedStack() {
             />
           ),
         }}
-      />
+      /> */}
       <Drawer.Screen 
         name='Sorting Hat' 
         component={SortingHat} 

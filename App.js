@@ -1,36 +1,37 @@
-import { useContext, useEffect, useState } from 'react';
-import { NavigationContainer } from '@react-navigation/native';
-import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import { StatusBar } from 'expo-status-bar';
-import AsyncStorage from '@react-native-async-storage/async-storage';
-import AppLoading from 'expo-app-loading';
-import { createDrawerNavigator } from '@react-navigation/drawer';
-import { Ionicons } from '@expo/vector-icons';
+import React, { useContext, useEffect, useState } from "react";
+import { View, Text, StyleSheet } from "react-native";
+import { NavigationContainer } from "@react-navigation/native";
+import { createNativeStackNavigator } from "@react-navigation/native-stack";
+import { createDrawerNavigator } from "@react-navigation/drawer";
+import { Ionicons } from "@expo/vector-icons";
+import { StatusBar } from "expo-status-bar";
+import AsyncStorage from "@react-native-async-storage/async-storage";
+import * as SplashScreen from "expo-splash-screen";
 
-import { colors } from './constants/styles';
-import SortingHat from './screens/SortingHat/SortingHat';
-import AuthContextProvider, { AuthContext } from './store/auth-context';
-import IconButton from './components/UI/IconButton';
+import { colors } from "./constants/styles";
+import SortingHat from "./screens/SortingHat/SortingHat";
+import AuthContextProvider, { AuthContext } from "./store/auth-context";
+import IconButton from "./components/UI/IconButton";
+import LoginScreen from "./screens/Authentication/LoginScreen";
+import SignupScreen from "./screens/Authentication/SignupScreen";
+import Gryffindor from "./screens/Hogwarts/Gryffindor";
+import Hufflepuff from "./screens/Hogwarts/Hufflepuff";
+import Ravenclaw from "./screens/Hogwarts/Ravenclaw";
+import Slytherin from "./screens/Hogwarts/Slytherin";
 
-import LoginScreen from './screens/Authentication/LoginScreen';
-import Gryffindor from './screens/Hogwarts/Gryffindor';
-// import Houses from './screens/Hogwarts/Houses';
-import SignupScreen from './screens/Authentication/SignupScreen';
-import Hufflepuff from './screens/Hogwarts/Hufflepuff';
-import Ravenclaw from './screens/Hogwarts/Ravenclaw'
-import Slytherin from './screens/Hogwarts/Slytherin'
+const Stack = createNativeStackNavigator();
+const Drawer = createDrawerNavigator();
 
-const Stack = createNativeStackNavigator()
-const Drawer = createDrawerNavigator()
+SplashScreen.preventAutoHideAsync();
 
 function AuthStack() {
   return (
     <Stack.Navigator
       screenOptions={{
         headerStyle: { backgroundColor: colors.primary200 },
-        headerTintColor: 'white',
+        headerTintColor: "white",
         contentStyle: { backgroundColor: colors.primary900 },
-        headerShown: false
+        headerShown: false,
       }}
     >
       <Stack.Screen name="Login" component={LoginScreen} />
@@ -43,15 +44,15 @@ function AuthenticatedStack() {
   const authCtx = useContext(AuthContext);
   return (
     <Drawer.Navigator
-    screenOptions={{
-      headerStyle: { backgroundColor: colors.primary100 },
-      headerTintColor: 'white',
-      sceneContainerStyle: { backgroundColor: colors.primary200 },
-      drawerContentStyle: { backgroundColor: colors.primary400 },
-      drawerInactiveTintColor: 'white',
-      drawerActiveTintColor: colors.accent500,
-      drawerActiveBackgroundColor: colors.primary700,
-    }}
+      screenOptions={{
+        headerStyle: { backgroundColor: colors.primary100 },
+        headerTintColor: "white",
+        sceneContainerStyle: { backgroundColor: colors.primary200 },
+        drawerContentStyle: { backgroundColor: colors.primary400 },
+        drawerInactiveTintColor: "white",
+        drawerActiveTintColor: colors.accent500,
+        drawerActiveBackgroundColor: colors.primary700,
+      }}
     >
       <Drawer.Screen
         name="Gryffindor Wizards"
@@ -59,14 +60,16 @@ function AuthenticatedStack() {
         options={{
           headerStyle: { backgroundColor: colors.gryffindor },
           drawerIcon: () => (
-            <IconButton icon={require('./assets/Hogwarts/Icons/gryffindor.png')} />
+            <IconButton
+              icon={require("./assets/Hogwarts/Icons/gryffindor.png")}
+            />
           ),
           headerRight: ({ tintColor }) => (
             <Ionicons
               name="exit"
               color={tintColor}
               size={24}
-              style={{paddingRight: 15}}
+              style={{ paddingRight: 15 }}
               onPress={authCtx.logout}
             />
           ),
@@ -78,14 +81,16 @@ function AuthenticatedStack() {
         options={{
           headerStyle: { backgroundColor: colors.hufflepuff },
           drawerIcon: () => (
-            <IconButton icon={require('./assets/Hogwarts/Icons/hufflepuff.png')} />
+            <IconButton
+              icon={require("./assets/Hogwarts/Icons/hufflepuff.png")}
+            />
           ),
           headerRight: ({ tintColor }) => (
             <Ionicons
               name="exit"
               color={tintColor}
               size={24}
-              style={{paddingRight: 15}}
+              style={{ paddingRight: 15 }}
               onPress={authCtx.logout}
             />
           ),
@@ -97,14 +102,16 @@ function AuthenticatedStack() {
         options={{
           headerStyle: { backgroundColor: colors.ravenclaw },
           drawerIcon: () => (
-            <IconButton icon={require('./assets/Hogwarts/Icons/ravenclaw.png')} />
+            <IconButton
+              icon={require("./assets/Hogwarts/Icons/ravenclaw.png")}
+            />
           ),
           headerRight: ({ tintColor }) => (
             <Ionicons
               name="exit"
               color={tintColor}
               size={24}
-              style={{paddingRight: 15}}
+              style={{ paddingRight: 15 }}
               onPress={authCtx.logout}
             />
           ),
@@ -116,52 +123,35 @@ function AuthenticatedStack() {
         options={{
           headerStyle: { backgroundColor: colors.slytherin },
           drawerIcon: () => (
-            <IconButton icon={require('./assets/Hogwarts/Icons/slytherin.png')} />
+            <IconButton
+              icon={require("./assets/Hogwarts/Icons/slytherin.png")}
+            />
           ),
           headerRight: ({ tintColor }) => (
             <Ionicons
               name="exit"
               color={tintColor}
               size={24}
-              style={{paddingRight: 15}}
+              style={{ paddingRight: 15 }}
               onPress={authCtx.logout}
             />
           ),
         }}
       />
-      {/* <Drawer.Screen 
-        name='Hogwarts Houses' 
-        component={Houses} 
-        options={{
-          headerStyle: { backgroundColor: colors.houses },
-          drawerIcon: () => (
-            <IconButton icon={require('./assets/Hogwarts/Icons/houses.png')} />
-          ),
-          headerRight: ({ tintColor }) => (
-            <Ionicons
-              name="exit"
-              color={tintColor}
-              size={24}
-              style={{paddingRight: 15}}
-              onPress={authCtx.logout}
-            />
-          ),
-        }}
-      /> */}
-      <Drawer.Screen 
-        name='Sorting Hat' 
-        component={SortingHat} 
+      <Drawer.Screen
+        name="Sorting Hat"
+        component={SortingHat}
         options={{
           headerStyle: { backgroundColor: colors.hat },
           drawerIcon: () => (
-            <IconButton icon={require('./assets/Hogwarts/SortingHat.png')} />
+            <IconButton icon={require("./assets/Hogwarts/SortingHat.png")} />
           ),
           headerRight: ({ tintColor }) => (
             <Ionicons
               name="exit"
               color={tintColor}
               size={24}
-              style={{paddingRight: 10}}
+              style={{ paddingRight: 10 }}
               onPress={authCtx.logout}
             />
           ),
@@ -184,35 +174,34 @@ function Navigation() {
 
 function Root() {
   const [isTryingLogin, setIsTryingLogin] = useState(true);
-
   const authCtx = useContext(AuthContext);
 
   useEffect(() => {
     async function fetchToken() {
-      const storedToken = await AsyncStorage.getItem('token');
+      const storedToken = await AsyncStorage.getItem("token");
 
       if (storedToken) {
         authCtx.authenticate(storedToken);
       }
 
       setIsTryingLogin(false);
+      SplashScreen.hideAsync();
     }
 
     fetchToken();
   }, []);
 
   if (isTryingLogin) {
-    return <AppLoading />;
+    return null; // or you can return a custom loading component here
   }
 
   return <Navigation />;
 }
 
 export default function App() {
-  
   return (
     <>
-      <StatusBar style='dark' barStyle='dark-content' />
+      <StatusBar style="dark" barStyle="dark-content" />
       <AuthContextProvider>
         <Root />
       </AuthContextProvider>
